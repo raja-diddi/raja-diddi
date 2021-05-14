@@ -1,0 +1,37 @@
+#include<iostream>
+using namespace std;
+long long int N=1000000;
+long long int seive[1000000];
+void gen_seive()
+{
+	for(int i=0;i<N;i++)  
+	seive[i]=1;
+	seive[0]=seive[1]=0;		
+	for(int i=2;i*i<=N;i++)
+	{
+		if(seive[i]==1)			
+		{					
+			for(int j=i*i;j<=N;j=j+i)
+				seive[j]=0;
+		}
+	}
+}
+int main()
+{
+	gen_seive();		
+  int n,le,re,s=0;
+	cin>>n;
+  while(n--)
+  {
+    cin>>le>>re;
+    s=0;
+    for(int i=le;i<=re;i++)
+    {
+      if(seive[i]==1)
+        s=s+i;
+    }
+    cout<<s<<endl;
+  }
+  
+	return 0;
+}
