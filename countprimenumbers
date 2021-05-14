@@ -1,0 +1,31 @@
+*/  countprimes using seive
+long long int x=100;
+long long int seive[100];
+void gen-seive()
+{
+	for(int i=0;i<x;i++)  
+	seive[i]=1;
+	seive[0]=seive[1]=0;		
+	for(int i=2;i*i<x;i++)
+	{
+		if(seive[i]==1)				
+		{					
+			for(int j=i*i;j<=x;j=j+i)
+				seive[j]=0;
+		}
+	}
+}
+int main()
+{
+	gen-seive();		
+	int n,c=0;
+	cin>>n;
+	for(int i=2;i<=n;i++)
+	{
+		if(seive[i]==1)
+		c++;
+	}
+       cout<<c;
+}
+	return 0;
+}
