@@ -1,0 +1,63 @@
+#include<bits/stdc++.h>
+using namespace std;
+long long int N=1000001;
+long long int sieve[1000001];
+void gen_sieve()
+{
+    sieve[0]=sieve[1]=1;
+    for(int i=2;i<=N;i++)
+    {
+        sieve[i]=i;
+    }
+    for(int i=2;i*i<N;i++)
+    {
+        if(sieve[i]==i)
+        {
+            for(int j=i*i;j<N;j+=i)
+            {
+                if(sieve[j]==j)
+                {
+                    sieve[j]=i;
+                }
+            }
+        }
+    }
+}
+int main()
+{
+    gen_sieve();
+    long long int t;
+    cin>>t;
+    while(t--)
+    {
+        long long int n;
+        cin>>n;
+        int flage=0;
+        if(sieve[n]==n){
+            cout<<2<<"^"<<0<<"\n";
+            flage=1;
+        }
+        else{
+            map<int,int>mpp;
+            mpp.insert({2,0});
+            while(n!=1 && flage==0)
+            {
+                mpp[sieve[n]]++;
+                n=n/sieve[n];
+            }
+            int len=mpp.size();
+            for(auto it:mpp)
+            {
+                if(len!=1)
+                cout<<it.first<<"^"<<it.second<<"*";
+                len--;
+            }
+            map<int,int>::reverse_iterator rit;
+            rit=mpp.rbegin();
+            cout << rit->first << "^" << rit->second;
+        
+            cout<<"\n";
+        }
+ 
+    }
+}
