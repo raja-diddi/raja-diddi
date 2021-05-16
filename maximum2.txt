@@ -1,0 +1,19 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+int t;
+cin>>t;
+int a[t];
+for(int i=0;i<t;i++) 
+   cin>>a[i];
+	  int maxim;     
+        maxim=a[0]^a[1];
+        for(int i=1;i<t-1;i++)
+        {
+            if(maxim<(a[i]^a[i+1]))
+                maxim=a[i]^a[i+1];
+        }
+        cout<<maxim;
+        return 0;
+        }
